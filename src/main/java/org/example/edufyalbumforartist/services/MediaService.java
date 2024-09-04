@@ -1,4 +1,4 @@
 package org.example.edufyalbumforartist.services;
 
-public class MediaService implements MediaSeriviceInterface{
+public class MediaService implements MediaServiceInterface{
 }

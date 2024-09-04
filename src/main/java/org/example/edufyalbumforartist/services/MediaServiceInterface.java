@@ -1,4 +1,6 @@
 package org.example.edufyalbumforartist.services;
 
-public interface MediaSeriviceInterface {
+public interface MediaServiceInterface {
+
+
 }

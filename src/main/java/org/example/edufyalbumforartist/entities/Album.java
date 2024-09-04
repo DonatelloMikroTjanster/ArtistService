@@ -1,5 +1,6 @@
 package org.example.edufyalbumforartist.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +13,11 @@ public class Album {
 
     @Column(name = "name", length = 30, nullable = false)
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "artist_id", nullable = false)
+    @JsonIgnore
+    private Artist artist;
 
     public Integer getId() {
         return id;
@@ -27,5 +33,13 @@ public class Album {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 }
