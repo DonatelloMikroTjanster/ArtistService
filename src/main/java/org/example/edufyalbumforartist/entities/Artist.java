@@ -18,6 +18,7 @@ public class Artist {
     @OneToMany(mappedBy = "artist")
     private List<Album> albums;
 
+
     public Integer getId() {
         return id;
     }

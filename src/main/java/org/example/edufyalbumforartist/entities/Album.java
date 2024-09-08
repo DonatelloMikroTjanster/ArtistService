@@ -14,6 +14,9 @@ public class Album {
     @Column(name = "name", length = 30, nullable = false)
     private String name;
 
+    @Column(name = "media_category")
+    private String mediaCategory;
+
     @ManyToOne
     @JoinColumn(name = "artist_id", nullable = false)
     @JsonIgnore
