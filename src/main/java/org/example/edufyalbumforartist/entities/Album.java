@@ -1,10 +1,16 @@
 package org.example.edufyalbumforartist.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "albums")
+@Table(name = "album")
 public class Album {
 
     @Id
@@ -14,13 +20,19 @@ public class Album {
     @Column(name = "name", length = 30, nullable = false)
     private String name;
 
-    @Column(name = "media_category")
-    private String mediaCategory;
 
-    @ManyToOne
-    @JoinColumn(name = "artist_id", nullable = false)
+    @ManyToMany
     @JsonIgnore
-    private Artist artist;
+    @JoinTable(
+            name = "album_artist",
+            joinColumns = @JoinColumn(name = "album_id"),
+            inverseJoinColumns = @JoinColumn(name = "artist_id")
+    )
+    private Set<Artist> artists = new HashSet<>();
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "release_date", nullable = false)
+    private Date releaseDate;
 
     public Integer getId() {
         return id;
@@ -38,11 +50,19 @@ public class Album {
         this.name = name;
     }
 
-    public Artist getArtist() {
-        return artist;
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Set<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Set<Artist> artists) {
+        this.artists = artists;
     }
 }

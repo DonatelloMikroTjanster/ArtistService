@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ArtistService implements ArtistServiceInterface{
@@ -15,7 +16,7 @@ public class ArtistService implements ArtistServiceInterface{
     @Autowired
     private ArtistRepository artistRepository;
 
-    public List<Album> getAlbumsByArtist(Integer artistId) {
+    public Set<Album> getAlbumsByArtist(Integer artistId) {
         Artist artist = artistRepository.findById(artistId)
                 .orElseThrow(() -> new ResourceNotFoundException("Artist", "ID", "id"));
         return artist.getAlbums();

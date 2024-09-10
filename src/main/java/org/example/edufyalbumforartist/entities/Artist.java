@@ -2,10 +2,12 @@ package org.example.edufyalbumforartist.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "artists")
+@Table(name = "artist")
 public class Artist {
 
     @Id
@@ -15,9 +17,16 @@ public class Artist {
     @Column(name = "name", length = 20, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "artist")
-    private List<Album> albums;
+    @ManyToMany(mappedBy = "artists")
+    private Set<Album> albums = new HashSet<>();
 
+    public Set<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(Set<Album> albums) {
+        this.albums = albums;
+    }
 
     public Integer getId() {
         return id;
@@ -35,11 +44,11 @@ public class Artist {
         this.name = name;
     }
 
-    public List<Album> getAlbums() {
+/*    public List<Album> getAlbums() {
         return albums;
     }
 
     public void setAlbums(List<Album> albums) {
         this.albums = albums;
-    }
+    }*/
 }
