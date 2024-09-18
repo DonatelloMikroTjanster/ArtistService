@@ -3,7 +3,6 @@ package org.example.edufyalbumforartist.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,8 +16,9 @@ public class Artist {
     @Column(name = "name", length = 20, nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "artists")
+    @ManyToMany(mappedBy = "artists", cascade = CascadeType.ALL)
     private Set<Album> albums = new HashSet<>();
+
 
     public Set<Album> getAlbums() {
         return albums;
@@ -44,11 +44,5 @@ public class Artist {
         this.name = name;
     }
 
-/*    public List<Album> getAlbums() {
-        return albums;
-    }
 
-    public void setAlbums(List<Album> albums) {
-        this.albums = albums;
-    }*/
 }

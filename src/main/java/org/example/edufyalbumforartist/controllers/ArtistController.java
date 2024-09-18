@@ -35,13 +35,21 @@ public class ArtistController {
 
 
     @DeleteMapping("/delete-artist/{artistId}")
-    public void deleteArtist(@PathVariable Integer artistId) {
+    public String deleteArtist(@PathVariable Integer artistId) {
+        Artist artist = artistService.getAllArtists().get(artistId - 1);
         artistService.deleteArtistById(artistId);
+        return artist.getName() + " has been deleted.";
     }
 
     @PutMapping("/update-artist/{artistId}")
     public ResponseEntity<Artist> updateArtist(@PathVariable Integer artistId, @RequestBody Artist artist) {
         return ResponseEntity.ok(artistService.updateArtist(artistId, artist));
+    }
+
+    //ej fullständig
+    @PostMapping("/add-artist-with-album")
+    public ResponseEntity<Artist> addArtistWithAlbum(@RequestBody Artist artist) {
+        return ResponseEntity.ok(artistService.addArtistWithAlbum(artist));
     }
 
 }

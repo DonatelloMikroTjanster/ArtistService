@@ -3,7 +3,6 @@ package org.example.edufyalbumforartist.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -14,6 +13,7 @@ import java.util.Set;
 public class Album {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -23,16 +23,20 @@ public class Album {
 
     @ManyToMany
     @JsonIgnore
-    @JoinTable(
-            name = "album_artist",
-            joinColumns = @JoinColumn(name = "album_id"),
-            inverseJoinColumns = @JoinColumn(name = "artist_id")
-    )
+    @JoinTable(name = "album_artist", joinColumns = @JoinColumn(name = "album_id"), inverseJoinColumns = @JoinColumn(name = "artist_id"))
     private Set<Artist> artists = new HashSet<>();
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name = "release_date", nullable = false)
+    @Column(name = "release_date")
     private Date releaseDate;
+
+    public Album() {
+    }
+
+    public Album(String name) {
+        this.name = name;
+    }
+
 
     public Integer getId() {
         return id;

@@ -14,4 +14,5 @@ public interface ArtistServiceInterface {
 
     Artist updateArtist(Integer artistId, Artist artist);
 
+
 }
