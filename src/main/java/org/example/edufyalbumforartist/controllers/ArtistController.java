@@ -29,14 +29,17 @@ public class ArtistController {
 
 
     @DeleteMapping("/delete-artist/{artistId}")
-    public String deleteArtist(@PathVariable Integer artistId) {
-        Artist artist = artistService.getAllArtists().get(artistId - 1);
+    public String deleteArtist(@PathVariable Long artistId) {
+        Artist artist = artistService.getAllArtists().stream()
+                .filter(a -> a.getId().equals(artistId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Artist not found"));
         artistService.deleteArtistById(artistId);
         return artist.getName() + " has been deleted.";
     }
 
     @PutMapping("/update-artist/{artistId}")
-    public ResponseEntity<Artist> updateArtist(@PathVariable Integer artistId, @RequestBody Artist artist) {
+    public ResponseEntity<Artist> updateArtist(@PathVariable Long artistId, @RequestBody Artist artist) {
         return ResponseEntity.ok(artistService.updateArtist(artistId, artist));
     }
 
