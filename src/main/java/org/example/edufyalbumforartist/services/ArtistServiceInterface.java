@@ -10,9 +10,9 @@ public interface ArtistServiceInterface {
 
     List<Artist> getAllArtists();
 
-    void deleteArtistById(Integer artistId);
+    void deleteArtistById(Long artistId);
 
-    Artist updateArtist(Integer artistId, Artist artist);
+    Artist updateArtist(Long artistId, Artist artist);
 
 
 }

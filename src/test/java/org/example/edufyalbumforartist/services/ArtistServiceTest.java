@@ -29,7 +29,7 @@ class ArtistServiceTest {
     @Test
     void testGetAlbumsByArtistWhenArtistNotFoundException() {
         //Arrange
-        int artistId = 1;
+        Long artistId = 1L;
         when(artistRepository.findById(artistId)).thenReturn(Optional.empty());
 
         //Act
@@ -44,7 +44,7 @@ class ArtistServiceTest {
     void testGetAlbumsByArtist() {
         //Arrange
         Artist artist = new Artist();
-        Integer artistId = 1;
+        Long artistId = 1L;
         artist.setId(artistId);
 
         Set<Album> albums = new HashSet<>();
@@ -54,7 +54,7 @@ class ArtistServiceTest {
         albums.add(album2);
         artist.setAlbums(albums);
 
-        when(artistRepository.findById(1)).thenReturn(Optional.of(artist));
+        when(artistRepository.findById(artistId)).thenReturn(Optional.of(artist));
 
         //Act
         Set<Album> result = artistService.getAlbumsByArtist(artistId);
@@ -101,7 +101,7 @@ class ArtistServiceTest {
     @Test
     void testDeleteArtistByIdArtistNotFoundException() {
         //Arrange
-        int artistId = 1;
+        Long artistId = 1L;
         when(artistRepository.findById(artistId)).thenReturn(Optional.empty());
 
         //Act
@@ -115,7 +115,7 @@ class ArtistServiceTest {
     @Test
     void testDeleteArtistById() {
         //Arrange
-        int artistId = 1;
+        Long artistId = 1L;
         Artist artist = new Artist();
         artist.setId(artistId);
 
@@ -132,7 +132,7 @@ class ArtistServiceTest {
     @Test
     void testUpdateArtistWithArtistNotFoundException() {
         //Arrange
-        int artistId = 1;
+        Long artistId = 1L;
         when(artistRepository.findById(artistId)).thenReturn(Optional.empty());
 
         //Act
@@ -146,7 +146,7 @@ class ArtistServiceTest {
     @Test
     void testUpdateArtist() {
         //Arrange
-        int artistId = 1;
+        Long artistId = 1L;
         Artist existingArtist = new Artist();
         existingArtist.setId(artistId);
         existingArtist.setName("Artist to be updated");

@@ -22,13 +22,13 @@ public class ArtistService implements ArtistServiceInterface{
         return artistRepository.findAll();
     }
 
-    public void deleteArtistById(Integer artistId) {
+    public void deleteArtistById(Long artistId) {
         artistRepository.findById(artistId).
                 orElseThrow(() -> new ResourceNotFoundException("Artist", "ID", artistId));
         artistRepository.deleteById(artistId);
     }
 
-    public Artist updateArtist(Integer artistId, Artist artist) {
+    public Artist updateArtist(Long artistId, Artist artist) {
         Artist updatedArtist = artistRepository.findById(artistId)
                 .orElseThrow(() -> new ResourceNotFoundException("Artist", "ID", artistId));
         if (artist.getName() != null) {
