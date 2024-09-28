@@ -1,5 +1,6 @@
 package org.example.edufyalbumforartist.services;
 
+import org.example.edufyalbumforartist.entities.Album;
 import org.example.edufyalbumforartist.entities.Artist;
 import org.example.edufyalbumforartist.exceptions.ResourceNotFoundException;
 import org.example.edufyalbumforartist.repostitories.ArtistRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ArtistService implements ArtistServiceInterface{
@@ -37,5 +39,10 @@ public class ArtistService implements ArtistServiceInterface{
         return artistRepository.save(updatedArtist);
     }
 
+    public Set<Album> getAlbumsByArtist(Long artistId) {
+        Artist artist = artistRepository.findById(artistId)
+                .orElseThrow(() -> new ResourceNotFoundException("Artist", "ID", artistId));
+        return artist.getAlbums();
+    }
 
 }
