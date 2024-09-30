@@ -48,5 +48,12 @@ public class Artist {
         this.name = name;
     }
 
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 
 }
