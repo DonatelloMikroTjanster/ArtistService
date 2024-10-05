@@ -17,6 +17,12 @@ public class ArtistService implements ArtistServiceInterface{
     private ArtistRepository artistRepository;
 
     public Artist addNewArtist(Artist artist) {
+        Set<Album> albums = artist.getAlbums();
+        if (albums != null) {
+            for (Album album : albums) {
+                album.getArtists().add(artist);
+            }
+        }
         return artistRepository.save(artist);
     }
 
