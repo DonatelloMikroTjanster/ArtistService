@@ -1,8 +1,10 @@
 package org.example.edufyalbumforartist.services;
 
+import org.example.edufyalbumforartist.entities.Album;
 import org.example.edufyalbumforartist.entities.Artist;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ArtistServiceInterface {
 
@@ -10,9 +12,11 @@ public interface ArtistServiceInterface {
 
     List<Artist> getAllArtists();
 
-    void deleteArtistById(Integer artistId);
+    void deleteArtistById(Long artistId);
 
-    Artist updateArtist(Integer artistId, Artist artist);
+    Artist updateArtist(Long artistId, Artist artist);
+
+    Set<Album> getAlbumsByArtist(Long artistId);
 
 
 }

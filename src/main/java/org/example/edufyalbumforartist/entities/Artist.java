@@ -11,28 +11,27 @@ public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "name", length = 20, nullable = false)
+    @Column(name = "name", length = 100, nullable = false)
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
 
     @ManyToMany(mappedBy = "artists", cascade = CascadeType.ALL)
     private Set<Album> albums = new HashSet<>();
 
 
-    public Set<Album> getAlbums() {
-        return albums;
+    public Artist() {
     }
 
-    public void setAlbums(Set<Album> albums) {
-        this.albums = albums;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -44,5 +43,19 @@ public class Artist {
         this.name = name;
     }
 
+    public Genre getGenre() {
+        return genre;
+    }
 
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public Set<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(Set<Album> albums) {
+        this.albums = albums;
+    }
 }

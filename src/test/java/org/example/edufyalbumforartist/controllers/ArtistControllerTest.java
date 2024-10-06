@@ -39,7 +39,7 @@ class ArtistControllerTest {
         artistIn.setName("Test Artist");
 
         Artist expectedArtistReturn = new Artist();
-        expectedArtistReturn.setId(1);
+        expectedArtistReturn.setId(1L);
         expectedArtistReturn.setName("Test Artist");
 
         artistJson = objectMapper.writeValueAsString(artistIn);
@@ -113,7 +113,7 @@ class ArtistControllerTest {
         String updatedArtistJson = objectMapper.writeValueAsString(updatedArtist);
 
         Artist expectedUpdatedArtist = new Artist();
-        expectedUpdatedArtist.setId(1);
+        expectedUpdatedArtist.setId(1L);
         expectedUpdatedArtist.setName("Updated Artist");
         String expectedUpdatedArtistJson = objectMapper.writeValueAsString(expectedUpdatedArtist);
 
